@@ -1,5 +1,8 @@
 package studio4;
 
+import edu.princeton.cs.introcs.StdDraw;
+
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -19,6 +22,35 @@ public class InterpretDrawingFile {
 		chooser.showOpenDialog(null);
 		File f = new File(chooser.getSelectedFile().getPath());
 		Scanner in = new Scanner(f); //making Scanner with a File
-		
+
+		String shapeType = in.next();
+		int redComponent = in.nextInt();
+		int greenComponent = in.nextInt();
+		int blueComponent = in.nextInt();
+		boolean isFilled = in.nextBoolean();
+		double parameterOne = in.nextDouble();
+		double parameterTwo = in.nextDouble();
+		double parameterThree = in.nextDouble();
+		double parameterFour = in.nextDouble();
+		//double parameterFive = in.nextDouble();
+		//double parameterSix = in.nextDouble();
+
+
+		Color surprise = new Color(redComponent, greenComponent, blueComponent);
+		StdDraw.setPenColor(surprise);
+
+		if(shapeType.equals("triangle")){
+			double [] s = {parameterOne, parameterTwo, parameterThree};
+			double [] t = {parameterOne, parameterTwo, parameterThree};
+			StdDraw.polygon (s,t);
+			StdDraw.filledPolygon(s,t);
+		}
+		else {
+			double [] z = {parameterOne, parameterFour, parameterThree, parameterTwo};
+			double [] a = {parameterOne, parameterTwo, parameterThree, parameterFour};
+			StdDraw.polygon (z,a);
+			StdDraw.filledPolygon(z,a);
+		}
+
 	}
 }
